@@ -12,8 +12,8 @@
         android:id="@+id/tv_taotaikhoan"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="50dp"
-        android:layout_marginBottom="50dp"
+        android:layout_marginTop="40dp"
+        android:layout_marginBottom="30dp"
         android:gravity="center"
         android:text="Tạo tài khoản"
         android:textColor="@color/white"
@@ -21,7 +21,7 @@
         android:textStyle="bold" />
 
     <EditText
-        android:id="@+id/edt_tendangnhap"
+        android:id="@+id/edt_hovaten"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/tv_taotaikhoan"
@@ -31,10 +31,97 @@
         android:layout_marginBottom="10dp"
         android:background="@drawable/edittext_format"
         android:backgroundTint="#30ffffff"
+        android:drawablePadding="20dp"
+        android:hint="Họ và tên"
+        android:padding="15dp"
+        android:textColor="@color/white"
+        android:textColorHint="@color/white"
+        android:textSize="15dp" />
+
+    <EditText
+        android:id="@+id/edt_sdt"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/edt_ngaysinh"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginBottom="10dp"
+        android:background="@drawable/edittext_format"
+        android:backgroundTint="#30ffffff"
+        android:drawablePadding="20dp"
+        android:hint="Số điện thoại"
+        android:padding="15dp"
+        android:textColor="@color/white"
+        android:textColorHint="@color/white"
+        android:textSize="15dp" />
+
+    <EditText
+        android:id="@+id/edt_email"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/edt_sdt"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginBottom="10dp"
+        android:background="@drawable/edittext_format"
+        android:backgroundTint="#30ffffff"
+        android:drawablePadding="20dp"
+        android:hint="Email"
+        android:padding="15dp"
+        android:textColor="@color/white"
+        android:textColorHint="@color/white"
+        android:textSize="15dp" />
+
+    <EditText
+        android:id="@+id/edt_ngaysinh"
+        android:layout_width="240dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/edt_hovaten"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="18dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginBottom="10dp"
+        android:background="@drawable/edittext_format"
+        android:backgroundTint="#30ffffff"
+        android:drawablePadding="20dp"
+        android:hint="Ngày sinh"
+        android:padding="15dp"
+        android:textColor="@color/white"
+        android:textColorHint="@color/white"
+        android:textSize="15dp" />
+
+    <Button
+        android:id="@+id/btn_chon_ngay"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/edt_hovaten"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="18dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginBottom="10dp"
+        android:layout_toRightOf="@+id/edt_ngaysinh"
+        android:backgroundTint="@color/blue_for_button"
+        android:drawablePadding="20dp"
+        android:text="Chọn ngày"
+        android:textSize="14dp" />
+
+    <EditText
+        android:id="@+id/edt_tendangnhap"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/edt_email"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginBottom="10dp"
+        android:background="@drawable/edittext_format"
+        android:backgroundTint="#30ffffff"
         android:drawableLeft="@drawable/ic_baseline_person_24"
         android:drawablePadding="20dp"
         android:hint="Tên đăng nhập"
-        android:padding="18dp"
+        android:padding="15dp"
         android:textColor="@color/white"
         android:textColorHint="@color/white"
         android:textSize="15dp" />
@@ -54,10 +141,10 @@
         android:drawablePadding="20dp"
         android:hint="Mật khẩu"
         android:inputType="textPassword"
-        android:padding="18dp"
+        android:padding="15dp"
         android:textColor="@color/white"
         android:textColorHint="@color/white"
-        android:textSize="15dp"/>
+        android:textSize="15dp" />
 
     <EditText
         android:id="@+id/edt_xacnhanmatkhau"
@@ -74,7 +161,7 @@
         android:drawablePadding="20dp"
         android:hint="Xác nhận mật khẩu"
         android:inputType="textPassword"
-        android:padding="18dp"
+        android:padding="15dp"
         android:textColor="@color/white"
         android:textColorHint="@color/white"
         android:textSize="15dp" />
@@ -87,7 +174,8 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="30dp"
         android:backgroundTint="@color/green_for_button"
-        android:text="Tạo tài khoản" />
+        android:text="Tạo tài khoản"
+        android:textSize="14dp"/>
 
     <Button
         android:id="@+id/btn_dang_nhap_bang_tai_khoan_da_co"
@@ -97,5 +185,6 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="10dp"
         android:backgroundTint="@color/blue_for_button"
-        android:text="Đăng nhập" />
+        android:text="Đăng nhập"
+        android:textSize="14dp"/>
 </RelativeLayout>

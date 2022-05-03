@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/action_bao_cao"
+        android:title="@string/action_bao_cao"
+        android:icon="@drawable/baseline_fact_check_white_48"/>
+    <item
+        android:id="@+id/action_trang_chu"
+        android:title="@string/action_trang_chu"
+        android:icon="@drawable/baseline_run_circle_white_48"/>
+    <item
+        android:id="@+id/action_nguoi_dung"
+        android:title="@string/action_nguoi_dung"
+        android:icon="@drawable/ic_baseline_person_24"/>
+</menu>

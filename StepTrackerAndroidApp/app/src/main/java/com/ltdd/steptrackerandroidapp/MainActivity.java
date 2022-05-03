@@ -63,7 +63,7 @@ public class MainActivity extends AppCompatActivity {
                 String matKhau = edt_matkhau.getText().toString();
 
                 if (TextUtils.isEmpty(tenDangNhap) || TextUtils.isEmpty(matKhau)) {
-                    Toast.makeText(MainActivity.this, "Cần nhập đầy đủ thông tin các trường!", Toast.LENGTH_LONG).show();
+                    Toast.makeText(MainActivity.this, "Vui lòng nhập đầy đủ thông tin!", Toast.LENGTH_LONG).show();
 
                 } else {
                     Boolean kiemTraTenDangNhap_MatKhau = DB.kiemTraTenDangNhap_MatKhau(tenDangNhap, matKhau);

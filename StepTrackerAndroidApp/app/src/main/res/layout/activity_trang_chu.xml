@@ -9,23 +9,50 @@
     tools:context=".TrangChu">
 
 
-    <ImageView
+    <TextView
+        android:id="@+id/tv_thoigian"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
-        android:src="@drawable/circle_yellow">
+        android:layout_marginTop="35dp"
+        android:text="Thời gian"
+        android:textColor="@color/white"
+        android:textSize="25dp"
+        android:textStyle="bold" />
 
-    </ImageView>
-
-    <TextView
+    <ImageView
+        android:id="@+id/img_circle_yellow"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="ABC"
-        android:layout_marginTop="100dp"
-        android:layout_marginLeft="200dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="90dp"
+        android:src="@drawable/circle_yellow" />
+
+    <TextView
+        android:id="@+id/tv_sobuoc"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="220dp"
+        android:text="22.0"
         android:textColor="@color/white"
-        android:textSize="30dp" />
+        android:textSize="30dp"
+        android:textStyle="bold"/>
 
+    <Button
+        android:id="@+id/btn_bat_dau"
+        android:layout_width="160dp"
+        android:layout_height="60dp"
+        android:layout_below="@+id/img_circle_yellow"
+        android:layout_centerHorizontal="true"
+        android:backgroundTint="@color/blue_for_button"
+        android:text="Bắt đầu"/>
 
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bottom_nav"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_alignParentBottom="true"
+        app:menu="@menu/menu_bottom_nav"/>
 
 </RelativeLayout>
