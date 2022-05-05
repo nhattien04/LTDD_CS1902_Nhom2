@@ -39,6 +39,8 @@ public class DBHelper extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase db) {
         this.mDefaultWritableDatabase = db;
+
+        // Khai bao bang NguoiDung
         String sql1 = "CREATE TABLE nguoidung ("
                 + "TenDangNhap nvarchar PRIMARY KEY,"
                 + "HoVaTen nvarchar,"
@@ -49,12 +51,38 @@ public class DBHelper extends SQLiteOpenHelper {
                 + "XacNhanMatKhau nvarchar)";
         db.execSQL(sql1);
 
+        // Khai bao bang ChiSo
+        String sql2 = "CREATE TABLE chiso (" +
+                "IDChiSo INTEGER PRIMARY KEY AUTOINCREMENT," +
+                "ChieuCao DOUBLE," +
+                "CanNang DOUBLE," +
+                "BMI DOUBLE)";
+        db.execSQL(sql2);
+
+        // Khai bao bang thongke
+        String sql3 = "CREATE TABLE thongke (" +
+                "IDThongKe INTEGER PRIMARY KEY AUTOINCREMENT," +
+                "SoBuoc DOUBLE," +
+                "QuangDuong DOUBLE," +
+                "Ngay DATETIME)";
+        db.execSQL(sql3);
+
+        // Khai bao bang chitietthongke
+        String sql4 = "CREATE TABLE chitietthongke (" +
+                "TenDanNhap nvarchar," +
+                "IDThongKe INTEGER," +
+                "SoNgay INTEGER," +
+                "PRIMARY KEY(TenDangNhap, IDThongKe))";
+        db.execSQL(sql4);
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         this.mDefaultWritableDatabase = db;
         db.execSQL("DROP TABLE IF EXISTS nguoidung");
+        db.execSQL("DROP TABLE IF EXISTS chiso");
+        db.execSQL("DROP TABLE IF EXISTS thongke");
+        db.execSQL("DROP TABLE IF EXISTS chitietthongke");
 
         onCreate(db);
     }

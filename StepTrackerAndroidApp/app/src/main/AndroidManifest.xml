@@ -12,6 +12,12 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.StepTrackerAndroidApp">
         <activity
+            android:name=".TrangBaoCao"
+            android:exported="false" />
+        <activity
+            android:name=".TrangNguoiDung"
+            android:exported="false" />
+        <activity
             android:name=".TrangChu"
             android:exported="false" />
         <activity
