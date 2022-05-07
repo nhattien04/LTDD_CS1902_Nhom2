@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/trang_chu_background_light"
+    android:orientation="vertical"
+    tools:context=".FR_TrangChu">
+
+    <TextView
+        android:id="@+id/tv_thoigian"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="35dp"
+        android:text="Thời gian"
+        android:textColor="@color/white"
+        android:textSize="20dp"
+        android:textStyle="bold" />
+
+    <ImageView
+        android:id="@+id/img_circle_yellow"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="90dp"
+        android:src="@drawable/circle_yellow" />
+
+    <TextView
+        android:id="@+id/tv_sobuoc"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="200dp"
+        android:text="0"
+        android:textColor="@color/white"
+        android:textSize="30dp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/tv_step_detector"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tv_sobuoc"
+        android:layout_centerHorizontal="true"
+        android:text="0"
+        android:textColor="@color/white"
+        android:textSize="30dp"
+        android:textStyle="bold" />
+
+
+</RelativeLayout>

@@ -1,6 +1,9 @@
 <resources>
     <string name="app_name">StepTrackerAndroidApp</string>
-    <string name="action_bao_cao">"Báo cáo</string>
     <string name="action_trang_chu">Trang chủ</string>
+    <string name="action_bao_cao">"Báo cáo</string>
+    <string name="action_chi_so">Chỉ số</string>
     <string name="action_nguoi_dung">Tôi</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

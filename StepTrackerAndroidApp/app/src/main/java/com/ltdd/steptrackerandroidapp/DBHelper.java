@@ -69,7 +69,7 @@ public class DBHelper extends SQLiteOpenHelper {
 
         // Khai bao bang chitietthongke
         String sql4 = "CREATE TABLE chitietthongke (" +
-                "TenDanNhap nvarchar," +
+                "TenDangNhap nvarchar," +
                 "IDThongKe INTEGER," +
                 "SoNgay INTEGER," +
                 "PRIMARY KEY(TenDangNhap, IDThongKe))";

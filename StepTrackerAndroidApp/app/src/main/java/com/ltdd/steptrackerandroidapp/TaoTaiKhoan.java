@@ -68,7 +68,7 @@ public class TaoTaiKhoan extends AppCompatActivity {
                         Boolean them = DB.themNguoiDung(tenDangNhap, hoVaTen, sqlNgaySinh, sdt, email, matKhau);
                         if (them == true) {
                             Toast.makeText(TaoTaiKhoan.this, "Thêm người dùng thành công!", Toast.LENGTH_LONG).show();
-                            Intent taoTaiKhoanIntent = new Intent(TaoTaiKhoan.this, TrangChu.class);
+                            Intent taoTaiKhoanIntent = new Intent(TaoTaiKhoan.this, Main_MenuBottom_Fragment.class);
                             startActivity(taoTaiKhoanIntent);
                         } else {
                             Toast.makeText(TaoTaiKhoan.this, "Thêm không thành công, hãy thử lại!", Toast.LENGTH_LONG).show();

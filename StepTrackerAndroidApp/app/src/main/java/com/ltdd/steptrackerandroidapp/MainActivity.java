@@ -59,6 +59,8 @@ public class MainActivity extends AppCompatActivity {
         btn_batdau.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+//                Intent intent = new Intent(MainActivity.this, TrangChu.class);
+//                startActivity(intent);
                 String tenDangNhap = edt_tendangnhap.getText().toString();
                 String matKhau = edt_matkhau.getText().toString();
 
@@ -69,7 +71,7 @@ public class MainActivity extends AppCompatActivity {
                     Boolean kiemTraTenDangNhap_MatKhau = DB.kiemTraTenDangNhap_MatKhau(tenDangNhap, matKhau);
                     if (kiemTraTenDangNhap_MatKhau == true) {
                         Toast.makeText(MainActivity.this, "Đăng nhập thành công!", Toast.LENGTH_LONG).show();
-                        Intent intent = new Intent(MainActivity.this, TrangChu.class);
+                        Intent intent = new Intent(MainActivity.this, Main_MenuBottom_Fragment.class);
                         startActivity(intent);
                     } else {
                         Toast.makeText(MainActivity.this, "Sai tên đăng nhập hoặc mật khẩu! Hãy tạo tài khoản nếu chưa có!", Toast.LENGTH_LONG).show();
