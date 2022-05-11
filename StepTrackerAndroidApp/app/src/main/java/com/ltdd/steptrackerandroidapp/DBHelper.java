@@ -210,7 +210,7 @@ public class DBHelper extends SQLiteOpenHelper {
         java.util.Date date = null;
         java.sql.Date sqlNgaySinh = null;
         try {
-            date = sdf1.parse("26-03-2021");
+            date = sdf1.parse("26-03-2022");
             sqlNgaySinh = new java.sql.Date(date.getTime());
             values.put("SoBuoc", 23);
             values.put("QuangDuong", 43);
