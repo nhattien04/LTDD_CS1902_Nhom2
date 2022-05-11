@@ -67,17 +67,17 @@ public class TaoTaiKhoan extends AppCompatActivity {
                     if (kiemTraTenDangNhap == false && flag == true) {
                         Boolean them = DB.themNguoiDung(tenDangNhap, hoVaTen, sqlNgaySinh, sdt, email, matKhau);
                         if (them == true) {
-                            Toast.makeText(TaoTaiKhoan.this, "Thêm người dùng thành công!", Toast.LENGTH_LONG).show();
-                            Intent taoTaiKhoanIntent = new Intent(TaoTaiKhoan.this, Main_MenuBottom_Fragment.class);
+                            Toast.makeText(TaoTaiKhoan.this, "Thêm người dùng thành công!", Toast.LENGTH_SHORT).show();
+                            Intent taoTaiKhoanIntent = new Intent(TaoTaiKhoan.this, MainActivity.class);
                             startActivity(taoTaiKhoanIntent);
                         } else {
-                            Toast.makeText(TaoTaiKhoan.this, "Thêm không thành công, hãy thử lại!", Toast.LENGTH_LONG).show();
+                            Toast.makeText(TaoTaiKhoan.this, "Thêm không thành công, hãy thử lại!", Toast.LENGTH_SHORT).show();
                         }
                     } else {
-                        Toast.makeText(TaoTaiKhoan.this, "Tên đăng nhập này đã tồn tại, hãy chọn tên khác!", Toast.LENGTH_LONG).show();
+                        Toast.makeText(TaoTaiKhoan.this, "Tên đăng nhập này đã tồn tại, hãy chọn tên khác!", Toast.LENGTH_SHORT).show();
                     }
                 } else {
-                    Toast.makeText(TaoTaiKhoan.this, "Mật khẩu không trùng nhau!", Toast.LENGTH_LONG).show();
+                    Toast.makeText(TaoTaiKhoan.this, "Mật khẩu không trùng nhau!", Toast.LENGTH_SHORT).show();
                 }
             }
         });

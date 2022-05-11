@@ -16,7 +16,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
-
+    public static String TENDANGNHAP;
     EditText edt_tendangnhap, edt_matkhau;
     Button btn_batdau;
     ImageView facebook_icon, instagram_icon;
@@ -59,19 +59,20 @@ public class MainActivity extends AppCompatActivity {
         btn_batdau.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-//                Intent intent = new Intent(MainActivity.this, TrangChu.class);
-//                startActivity(intent);
                 String tenDangNhap = edt_tendangnhap.getText().toString();
                 String matKhau = edt_matkhau.getText().toString();
 
                 if (TextUtils.isEmpty(tenDangNhap) || TextUtils.isEmpty(matKhau)) {
-                    Toast.makeText(MainActivity.this, "Vui lòng nhập đầy đủ thông tin!", Toast.LENGTH_LONG).show();
+                    Toast.makeText(MainActivity.this, "Vui lòng nhập đầy đủ thông tin!", Toast.LENGTH_SHORT).show();
 
                 } else {
                     Boolean kiemTraTenDangNhap_MatKhau = DB.kiemTraTenDangNhap_MatKhau(tenDangNhap, matKhau);
                     if (kiemTraTenDangNhap_MatKhau == true) {
-                        Toast.makeText(MainActivity.this, "Đăng nhập thành công!", Toast.LENGTH_LONG).show();
+                        TENDANGNHAP = tenDangNhap;
+                        Toast.makeText(MainActivity.this, "Đăng nhập thành công!", Toast.LENGTH_SHORT).show();
+                        DB.sampleData();
                         Intent intent = new Intent(MainActivity.this, Main_MenuBottom_Fragment.class);
+                        intent.putExtra("keyName", DB.getTen(tenDangNhap));
                         startActivity(intent);
                     } else {
                         Toast.makeText(MainActivity.this, "Sai tên đăng nhập hoặc mật khẩu! Hãy tạo tài khoản nếu chưa có!", Toast.LENGTH_LONG).show();

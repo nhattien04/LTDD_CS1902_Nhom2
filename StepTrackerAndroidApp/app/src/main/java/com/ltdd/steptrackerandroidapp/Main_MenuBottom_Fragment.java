@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 
 import android.app.FragmentTransaction;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.widget.FrameLayout;
@@ -43,8 +44,16 @@ public class Main_MenuBottom_Fragment extends AppCompatActivity {
 
                 case R.id.action_bao_cao:
                     Toast.makeText(Main_MenuBottom_Fragment.this, "Báo cáo", Toast.LENGTH_SHORT).show();
-                    Fragment selectedFragment2 = new FR_TrangBaoCao();
-                    getSupportFragmentManager().beginTransaction().replace(R.id.frameLayout, selectedFragment2).commit();
+//                    Fragment selectedFragment2 = new FR_TrangBaoCao();
+//                    getSupportFragmentManager().beginTransaction().replace(R.id.frameLayout, selectedFragment2).commit();
+                    Intent intent = new Intent(getApplicationContext(),baocao.class);
+                    Intent iin= getIntent();
+                    Bundle b = iin.getExtras();
+                    if(b != null) {
+                        intent.putExtra("keyNam", (String) b.get("keyName"));
+                    }
+                    startActivity(intent);
+                    overridePendingTransition(0,0);
                     break;
 
                 case R.id.action_chi_so:

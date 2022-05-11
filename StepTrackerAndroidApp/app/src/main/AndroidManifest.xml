@@ -12,6 +12,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.StepTrackerAndroidApp">
         <activity
+            android:name=".ChinhSuaNguoiDung"
+            android:exported="false" />
+        <activity
             android:name=".Main_MenuBottom_Fragment"
             android:exported="false" />
         <activity
