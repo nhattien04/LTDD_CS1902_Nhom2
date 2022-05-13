@@ -17,6 +17,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
+import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -27,7 +28,8 @@ import java.util.Calendar;
 import java.util.ServiceLoader;
 
 public class FR_TrangChu extends Fragment implements SensorEventListener {
-    TextView tv_thoigian, tv_sobuoc, tv_stepdetector;
+    TextView tv_thoigian, tv_sobuoc, tv_stepdetector, tv_quangduong, tv_kcal;
+    Button btn_hoantac, btn_luu;
     SensorManager sensorManager;
     boolean running = false;
     BottomNavigationView bottomNavigationView;
@@ -59,12 +61,25 @@ public class FR_TrangChu extends Fragment implements SensorEventListener {
             isDetectorSensorPresent = false;
         }
 
+        btn_hoantac.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                tv_sobuoc.setText(String.valueOf(0));
+                tv_stepdetector.setText(String.valueOf(0));
+            }
+        });
+
         return view;
     }
 
     private void AnhXa() {
         tv_thoigian = (TextView) view.findViewById(R.id.tv_thoigian);
         tv_sobuoc = (TextView) view.findViewById(R.id.tv_sobuoc);
+        tv_stepdetector = (TextView) view.findViewById(R.id.tv_step_detector);
+        tv_quangduong = (TextView) view.findViewById(R.id.tv_quangduong);
+        tv_kcal = (TextView) view.findViewById(R.id.tv_kcal);
+        btn_hoantac = (Button) view.findViewById(R.id.btn_hoantac);
+        btn_luu = (Button) view.findViewById(R.id.btn_luu);
         sensorManager = (SensorManager) getActivity().getSystemService(Context.SENSOR_SERVICE);
         bottomNavigationView = (BottomNavigationView) view.findViewById(R.id.bottom_nav);
     }
@@ -102,6 +117,8 @@ public class FR_TrangChu extends Fragment implements SensorEventListener {
             stepDetect = (int) (stepDetect + sensorEvent.values[0]);
             tv_stepdetector.setText(String.valueOf(stepDetect));
         }
+
+
     }
 
     @Override
