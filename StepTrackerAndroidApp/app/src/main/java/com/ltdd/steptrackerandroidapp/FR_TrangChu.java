@@ -26,6 +26,7 @@ import android.widget.Toast;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
+import java.text.DecimalFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -87,10 +88,10 @@ public class FR_TrangChu extends Fragment implements SensorEventListener {
             flag = false;
         }
 
-        if (DB.getNgay().compareTo(sqlThoiGian) > 0) {
-            demBuoc = 0;
-            tv_sobuoc.setText(String.valueOf(demBuoc));
-        }
+//        if (DB.getNgay().compareTo(sqlThoiGian) > 0) {
+//            demBuoc = 0;
+//            tv_sobuoc.setText(String.valueOf(demBuoc));
+//        }
 
 
 
@@ -170,7 +171,6 @@ public class FR_TrangChu extends Fragment implements SensorEventListener {
     private void AnhXa() {
         tv_thoigian = (TextView) view.findViewById(R.id.tv_thoigian);
         tv_sobuoc = (TextView) view.findViewById(R.id.tv_sobuoc);
-        tv_stepdetector = (TextView) view.findViewById(R.id.tv_step_detector);
         tv_quangduong = (TextView) view.findViewById(R.id.tv_quangduong);
         tv_kcal = (TextView) view.findViewById(R.id.tv_kcal);
         btn_hoantac = (Button) view.findViewById(R.id.btn_hoantac);
@@ -210,6 +210,20 @@ public class FR_TrangChu extends Fragment implements SensorEventListener {
         if (sensorEvent.sensor == mStepCounter) {
             demBuoc = (int) sensorEvent.values[0];
             tv_sobuoc.setText(String.valueOf(demBuoc));
+
+            NguoiDung nd = DB.getChiSo(tenDangNhap);
+            double chieuCao = nd.getChieuCao();
+            double canNang = nd.getCanNang();
+            double vanToc = 5;
+
+            DecimalFormat df = new DecimalFormat();
+            df.setMaximumFractionDigits(2);
+
+            double kcal = (0.035 * canNang) + ((vanToc * vanToc) / chieuCao) * 0.029 * canNang;
+            tv_kcal.setText(String.valueOf(df.format(kcal)));
+            double quangDuong = (demBuoc * 50) / 100000;
+            tv_quangduong.setText(String.valueOf(df.format(quangDuong)));
+
             // Luu so buoc xuong CSDL
         }
 //        else if (sensorEvent.sensor == mStepDetector) {

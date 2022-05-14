@@ -100,5 +100,4 @@ public class Main_MenuBottom_Fragment extends AppCompatActivity implements FR_Ca
             findViewById(R.id.img_tieude).setBackgroundResource(R.drawable.trang_chu_background_light);
     }
 
-
 }

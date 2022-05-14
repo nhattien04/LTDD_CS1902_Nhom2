@@ -30,6 +30,7 @@ public class ChinhSuaNguoiDung extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.activity_chinh_sua_nguoi_dung);
 
         LoadThongTin();

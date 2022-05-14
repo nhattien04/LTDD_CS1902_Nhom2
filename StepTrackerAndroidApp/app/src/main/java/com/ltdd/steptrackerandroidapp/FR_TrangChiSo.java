@@ -1,5 +1,6 @@
 package com.ltdd.steptrackerandroidapp;
 
+import android.graphics.Color;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -38,6 +39,8 @@ public class FR_TrangChiSo extends Fragment {
         setMode(mode);
         if (mode==true) {
             view.findViewById(R.id.img_tieude).setBackgroundResource(R.drawable.trang_chu_background_dark);
+            TextView tv =(TextView) view.findViewById(R.id.tv_chiso);
+            tv.setTextColor(Color.parseColor("#FFFFFFFF"));
         }
         else{
             view.findViewById(R.id.img_tieude).setBackgroundResource(R.drawable.trang_chu_background_light);

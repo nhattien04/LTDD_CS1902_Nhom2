@@ -14,36 +14,40 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        android:visibility="visible"
-        android:translationZ="1dp"
         android:padding="10dp"
-        >
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="giới thiệu"
-            android:textSize="30dp"/>
+        android:translationZ="1dp"
+        android:visibility="visible">
 
         <TextView
+            android:id="@+id/tv_gioithieu"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="120dp"
+            android:text="Giới thiệu"
+            android:textSize="20dp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/tv_noidung"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:visibility="visible"
             android:padding="10dp"
-            android:text=" - Đếm bước chân là ứng dụng miễn phí và dễ sử dụng\n - Bạn chỉ cần ấn bắt đầu và để điện thoại trong túi hay bên cạnh bạn. App sẽ cho thấy kết quả di chuyển của bạn trong thời gian thực"
-            android:textSize="20dp"
-            />
+            android:text=" - Đếm bước chân là ứng dụng miễn phí và dễ sử dụng\n - Bạn chỉ cần ấn bắt đầu và để điện thoại trong túi hay bên cạnh bạn. App sẽ cho thấy kết quả di chuyển của bạn trong thời gian thực."
+            android:textSize="15dp"
+            android:visibility="visible" />
+
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:paddingTop="10dp"
-            >
+            android:paddingTop="10dp">
 
             <TextView
+                android:id="@+id/tv_chedotoi"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Chế độ tối "
-                android:textSize="30dp"
-                />
+                android:textSize="20dp"
+                android:textStyle="bold" />
 
             <Switch
                 android:id="@+id/switch_darkMode"
