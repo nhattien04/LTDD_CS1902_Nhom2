@@ -116,37 +116,28 @@ public class FR_TrangChu extends Fragment implements SensorEventListener {
                     flag = false;
                 }
 
-                Boolean themThongKe = DB.themThongKe(demBuoc, (demBuoc * 50) / 100000, sqlThoiGian);
-                if (themThongKe) {
-                    Toast.makeText(getActivity().getApplication(), "Thêm ThongKe thành công!", Toast.LENGTH_SHORT).show();
-                    idThongKe = DB.getIDThongKe();
-
-                } else {
-                    Toast.makeText(getActivity().getApplication(), "Thử lại!", Toast.LENGTH_SHORT).show();
-                }
+                Boolean themThongKe = DB.themThongKe(demBuoc, (demBuoc * 50) / 100, sqlThoiGian);
+                idThongKe = DB.getIDThongKe();
+//                if (themThongKe) {
+//                    Toast.makeText(getActivity().getApplication(), "Thêm ThongKe thành công!", Toast.LENGTH_SHORT).show();
+//                    idThongKe = DB.getIDThongKe();
+//
+//                } else {
+//                    Toast.makeText(getActivity().getApplication(), "Thử lại!", Toast.LENGTH_SHORT).show();
+//                }
 
                 // Them ChiTietThongKe
                 Boolean themChiTietThongKe = DB.themChiTietThongKe(idThongKe, tenDangNhap);
-                if (themChiTietThongKe) {
-                    Toast.makeText(getActivity().getApplication(), "Thêm CTTK thành công!", Toast.LENGTH_SHORT).show();
-                } else {
-                    Toast.makeText(getActivity().getApplication(), "Thử lại!", Toast.LENGTH_SHORT).show();
-                }
-
-                Toast.makeText(getActivity().getApplication(), "Chạy OK " + demBuoc, Toast.LENGTH_SHORT).show();
-
+//                if (themChiTietThongKe) {
+//                    Toast.makeText(getActivity().getApplication(), "Thêm CTTK thành công!", Toast.LENGTH_SHORT).show();
+//                } else {
+//                    Toast.makeText(getActivity().getApplication(), "Thử lại!", Toast.LENGTH_SHORT).show();
+//                }
+//
+                Toast.makeText(getActivity().getApplication(), "Lưu thành công!", Toast.LENGTH_SHORT).show();
             }
 
         });
-
-        btn_hoantac.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                demBuoc = 0;
-                tv_sobuoc.setText(String.valueOf(demBuoc));
-            }
-        });
-
 
         if (sensorManager.getDefaultSensor(Sensor.TYPE_STEP_COUNTER) != null) {
             mStepCounter = sensorManager.getDefaultSensor(Sensor.TYPE_STEP_COUNTER);
@@ -173,7 +164,6 @@ public class FR_TrangChu extends Fragment implements SensorEventListener {
         tv_sobuoc = (TextView) view.findViewById(R.id.tv_sobuoc);
         tv_quangduong = (TextView) view.findViewById(R.id.tv_quangduong);
         tv_kcal = (TextView) view.findViewById(R.id.tv_kcal);
-        btn_hoantac = (Button) view.findViewById(R.id.btn_hoantac);
         btn_luu = (Button) view.findViewById(R.id.btn_luu);
         sensorManager = (SensorManager) getActivity().getSystemService(Context.SENSOR_SERVICE);
         bottomNavigationView = (BottomNavigationView) view.findViewById(R.id.bottom_nav);
@@ -214,6 +204,9 @@ public class FR_TrangChu extends Fragment implements SensorEventListener {
             NguoiDung nd = DB.getChiSo(tenDangNhap);
             double chieuCao = nd.getChieuCao();
             double canNang = nd.getCanNang();
+            if (chieuCao == 0 || canNang == 0) {
+                Toast.makeText(getActivity().getApplication(), "Hãy nhập chiều cao và cân nặng để tính lượng tiêu thụ kcal!", Toast.LENGTH_SHORT).show();
+            }
             double vanToc = 5;
 
             DecimalFormat df = new DecimalFormat();
@@ -221,20 +214,9 @@ public class FR_TrangChu extends Fragment implements SensorEventListener {
 
             double kcal = (0.035 * canNang) + ((vanToc * vanToc) / chieuCao) * 0.029 * canNang;
             tv_kcal.setText(String.valueOf(df.format(kcal)));
-            double quangDuong = (demBuoc * 50) / 100000;
+            double quangDuong = (demBuoc * 50) / 100;
             tv_quangduong.setText(String.valueOf(df.format(quangDuong)));
-
-            // Luu so buoc xuong CSDL
         }
-//        else if (sensorEvent.sensor == mStepDetector) {
-//            stepDetect = (int) (stepDetect + sensorEvent.values[0]);
-//            tv_stepdetector.setText(String.valueOf(stepDetect));
-//        }
-
-
-
-
-
     }
 
     @Override

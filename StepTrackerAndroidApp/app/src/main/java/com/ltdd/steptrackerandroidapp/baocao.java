@@ -125,7 +125,7 @@ public class baocao extends AppCompatActivity {
         BarData barData = new BarData(barDataSet);
         barChart.setFitBars(true);
         barChart.setData(barData);
-        barChart.getDescription().setText("Số km trong tháng");
+        barChart.getDescription().setText("Số m trong tháng");
         barChart.animateY(1400);
     }
     public void getChart3(List<BaoCaoNgay> lbaocaongay) {
@@ -146,7 +146,7 @@ public class baocao extends AppCompatActivity {
         BarData barData = new BarData(barDataSet);
         barChart.setFitBars(true);
         barChart.setData(barData);
-        barChart.getDescription().setText("Số km trong tháng");
+        barChart.getDescription().setText("Số m trong tháng");
         barChart.animateY(1400);
     }
 }

@@ -55,20 +55,14 @@ public class FR_CaiDat extends Fragment {
                     TextView tv1 = (TextView) view.findViewById(R.id.tv_gioithieu);
                     tv1.setTextColor(Color.parseColor("#FFFFFFFF"));
 
-                    TextView tv2 =(TextView) view.findViewById(R.id.tv_noidung);
+                    TextView tv2 =(TextView) view.findViewById(R.id.tv_chedotoi);
                     tv2.setTextColor(Color.parseColor("#FFFFFFFF"));
-
-                    TextView tv3 =(TextView) view.findViewById(R.id.tv_chedotoi);
-                    tv3.setTextColor(Color.parseColor("#FFFFFFFF"));
                 } else {
                     TextView tv1 = (TextView) view.findViewById(R.id.tv_gioithieu);
                     tv1.setTextColor(Color.parseColor("#000000"));
 
-                    TextView tv2 =(TextView) view.findViewById(R.id.tv_noidung);
+                    TextView tv2 =(TextView) view.findViewById(R.id.tv_chedotoi);
                     tv2.setTextColor(Color.parseColor("#000000"));
-
-                    TextView tv3 =(TextView) view.findViewById(R.id.tv_chedotoi);
-                    tv3.setTextColor(Color.parseColor("#000000"));
                 }
             }
         });

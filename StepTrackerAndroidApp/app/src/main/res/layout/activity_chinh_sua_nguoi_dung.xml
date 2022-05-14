@@ -11,7 +11,7 @@
         android:id="@+id/img_tieude"
         android:layout_width="match_parent"
         android:layout_height="300dp"
-        android:background="@drawable/trang_chu_background_light" />
+        android:background="@drawable/tao_tai_khoan_background" />
 
     <TextView
         android:id="@+id/tv_chitiet"
@@ -21,7 +21,7 @@
         android:layout_marginBottom="30dp"
         android:gravity="center"
         android:text="Chi tiết thông tin"
-        android:textColor="#009688"
+        android:textColor="#FFFFFFFF"
         android:textSize="25dp"
         android:textStyle="bold" />
 
