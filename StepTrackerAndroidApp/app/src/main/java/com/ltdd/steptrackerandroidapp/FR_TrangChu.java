@@ -20,6 +20,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -44,6 +45,10 @@ public class FR_TrangChu extends Fragment implements SensorEventListener {
     int idThongKe = 0;
     boolean flag = true;
     View view;
+    boolean mode=false;
+    public void setMode(boolean darkMode){
+        this.mode = darkMode;
+    }
 
 
     @Override
@@ -51,6 +56,19 @@ public class FR_TrangChu extends Fragment implements SensorEventListener {
         view = inflater.inflate(R.layout.fragment_f_r__trang_chu, container, false);
         AnhXa();
         ThietLapThoiGian();
+
+        //      đổi màu
+        setMode(mode);
+        if (mode==true) {
+            view.findViewById(R.id.img_tieude).setBackgroundResource(R.drawable.trang_chu_background_dark);
+            ((ImageView)this.view.findViewById(R.id.img_circle_yellow)).setImageResource(R.drawable.circle_lightblue);
+        }
+        else{
+            view.findViewById(R.id.img_tieude).setBackgroundResource(R.drawable.trang_chu_background_light);
+            ((ImageView)this.view.findViewById(R.id.img_circle_yellow)).setImageResource(R.drawable.circle_yellow);
+        }
+//      end doi mau
+
 
         // Lay ngay hien tai
         Calendar calendar = Calendar.getInstance();

@@ -7,12 +7,19 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 
 public class FR_TrangBaoCao extends Fragment {
+    boolean mode=false;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
+
         return inflater.inflate(R.layout.fragment_f_r__trang_bao_cao, container, false);
+    }
+
+    public void setMode(boolean darkMode){
+        this.mode = darkMode;
     }
 }

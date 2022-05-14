@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ImageView
+        android:id="@+id/img_tieude"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/trang_chu_background_light" />
+
+    <LinearLayout
+        android:id="@+id/linear_menu"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:visibility="visible"
+        android:translationZ="1dp"
+        android:padding="10dp"
+        >
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="giới thiệu"
+            android:textSize="30dp"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:visibility="visible"
+            android:padding="10dp"
+            android:text=" - Đếm bước chân là ứng dụng miễn phí và dễ sử dụng\n - Bạn chỉ cần ấn bắt đầu và để điện thoại trong túi hay bên cạnh bạn. App sẽ cho thấy kết quả di chuyển của bạn trong thời gian thực"
+            android:textSize="20dp"
+            />
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingTop="10dp"
+            >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Chế độ tối "
+                android:textSize="30dp"
+                />
+
+            <Switch
+                android:id="@+id/switch_darkMode"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:minHeight="48dp"
+                android:switchMinWidth="60dp"
+                android:textSize="30dp" />
+        </RelativeLayout>
+    </LinearLayout>
+</RelativeLayout>

@@ -16,4 +16,8 @@
         android:id="@+id/action_nguoi_dung"
         android:title="@string/action_nguoi_dung"
         android:icon="@drawable/ic_baseline_person_24"/>
+    <item
+        android:id="@+id/action_cai_dat"
+        android:title="@string/action_cai_dat"
+        android:icon="@drawable/ic_baseline_person_24"/>
 </menu>

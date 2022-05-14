@@ -9,6 +9,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 public class FR_TrangNguoiDung extends Fragment {
@@ -17,6 +18,10 @@ public class FR_TrangNguoiDung extends Fragment {
     DBHelper DB;
     String tenDangNhap = MainActivity.TENDANGNHAP;
     View view;
+    boolean mode=false;
+    public void setMode(boolean darkMode){
+        this.mode = darkMode;
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -25,6 +30,17 @@ public class FR_TrangNguoiDung extends Fragment {
         NguoiDung n = DB.getNguoiDung(tenDangNhap);
         String txtHoVaTen = n.getHoVaTen();
         tv_tennguoidung.setText(txtHoVaTen);
+
+        //      đổi màu
+        setMode(mode);
+        if (mode==true) {
+            view.findViewById(R.id.img_tieude).setBackgroundResource(R.drawable.trang_chu_background_dark);
+        }
+        else{
+            view.findViewById(R.id.img_tieude).setBackgroundResource(R.drawable.trang_chu_background_light);
+        }
+//      end doi mau
+
 
         btn_chinhsua.setOnClickListener(new View.OnClickListener() {
             @Override
