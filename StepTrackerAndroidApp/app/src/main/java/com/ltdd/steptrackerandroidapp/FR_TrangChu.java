@@ -2,6 +2,7 @@ package com.ltdd.steptrackerandroidapp;
 
 import android.app.Service;
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
@@ -13,6 +14,7 @@ import androidx.core.app.AppOpsManagerCompat;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 
+import android.preference.PreferenceManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -23,6 +25,7 @@ import android.widget.Toast;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.ServiceLoader;
@@ -36,13 +39,95 @@ public class FR_TrangChu extends Fragment implements SensorEventListener {
     Sensor mStepCounter, mStepDetector;
     boolean isCounterSensorPresent, isDetectorSensorPresent;
     int demBuoc = 0, stepDetect = 0;
+    String tenDangNhap = MainActivity.TENDANGNHAP;
+    DBHelper DB;
+    int idThongKe = 0;
+    boolean flag = true;
     View view;
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.fragment_f_r__trang_chu, container, false);
         AnhXa();
         ThietLapThoiGian();
+
+        // Lay ngay hien tai
+        Calendar calendar = Calendar.getInstance();
+        SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
+        String ngay = sdf.format(calendar.getTime());
+
+        // Chuyen doi
+        SimpleDateFormat sdf1 = new SimpleDateFormat("dd-MM-yyyy");
+        java.util.Date date = null;
+        java.sql.Date sqlThoiGian = null;
+        try {
+            date = sdf1.parse(ngay);
+            sqlThoiGian = new java.sql.Date(date.getTime());
+        } catch (ParseException e) {
+            Toast.makeText(getActivity(), "Ngày không hợp lệ, vui lòng kiểm tra lại (dd-MM-yyyy).", Toast.LENGTH_SHORT).show();
+            flag = false;
+        }
+
+        if (DB.getNgay().compareTo(sqlThoiGian) > 0) {
+            demBuoc = 0;
+            tv_sobuoc.setText(String.valueOf(demBuoc));
+        }
+
+
+
+        btn_luu.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // Cac buoc them ThongKe
+                // Lay ngay hien tai
+                Calendar calendar = Calendar.getInstance();
+                SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
+                String ngay = sdf.format(calendar.getTime());
+
+                // Chuyen doi
+                SimpleDateFormat sdf1 = new SimpleDateFormat("dd-MM-yyyy");
+                java.util.Date date = null;
+                java.sql.Date sqlThoiGian = null;
+                try {
+                    date = sdf1.parse(ngay);
+                    sqlThoiGian = new java.sql.Date(date.getTime());
+                } catch (ParseException e) {
+                    Toast.makeText(getActivity(), "Ngày không hợp lệ, vui lòng kiểm tra lại (dd-MM-yyyy).", Toast.LENGTH_SHORT).show();
+                    flag = false;
+                }
+
+                Boolean themThongKe = DB.themThongKe(demBuoc, (demBuoc * 50) / 100000, sqlThoiGian);
+                if (themThongKe) {
+                    Toast.makeText(getActivity().getApplication(), "Thêm ThongKe thành công!", Toast.LENGTH_SHORT).show();
+                    idThongKe = DB.getIDThongKe();
+
+                } else {
+                    Toast.makeText(getActivity().getApplication(), "Thử lại!", Toast.LENGTH_SHORT).show();
+                }
+
+                // Them ChiTietThongKe
+                Boolean themChiTietThongKe = DB.themChiTietThongKe(idThongKe, tenDangNhap);
+                if (themChiTietThongKe) {
+                    Toast.makeText(getActivity().getApplication(), "Thêm CTTK thành công!", Toast.LENGTH_SHORT).show();
+                } else {
+                    Toast.makeText(getActivity().getApplication(), "Thử lại!", Toast.LENGTH_SHORT).show();
+                }
+
+                Toast.makeText(getActivity().getApplication(), "Chạy OK " + demBuoc, Toast.LENGTH_SHORT).show();
+
+            }
+
+        });
+
+        btn_hoantac.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                demBuoc = 0;
+                tv_sobuoc.setText(String.valueOf(demBuoc));
+            }
+        });
+
 
         if (sensorManager.getDefaultSensor(Sensor.TYPE_STEP_COUNTER) != null) {
             mStepCounter = sensorManager.getDefaultSensor(Sensor.TYPE_STEP_COUNTER);
@@ -61,14 +146,6 @@ public class FR_TrangChu extends Fragment implements SensorEventListener {
             isDetectorSensorPresent = false;
         }
 
-        btn_hoantac.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                tv_sobuoc.setText(String.valueOf(0));
-                tv_stepdetector.setText(String.valueOf(0));
-            }
-        });
-
         return view;
     }
 
@@ -82,6 +159,8 @@ public class FR_TrangChu extends Fragment implements SensorEventListener {
         btn_luu = (Button) view.findViewById(R.id.btn_luu);
         sensorManager = (SensorManager) getActivity().getSystemService(Context.SENSOR_SERVICE);
         bottomNavigationView = (BottomNavigationView) view.findViewById(R.id.bottom_nav);
+
+        DB = new DBHelper(getActivity());
     }
 
     @Override
@@ -113,10 +192,15 @@ public class FR_TrangChu extends Fragment implements SensorEventListener {
         if (sensorEvent.sensor == mStepCounter) {
             demBuoc = (int) sensorEvent.values[0];
             tv_sobuoc.setText(String.valueOf(demBuoc));
-        } else if (sensorEvent.sensor == mStepDetector) {
-            stepDetect = (int) (stepDetect + sensorEvent.values[0]);
-            tv_stepdetector.setText(String.valueOf(stepDetect));
+            // Luu so buoc xuong CSDL
         }
+//        else if (sensorEvent.sensor == mStepDetector) {
+//            stepDetect = (int) (stepDetect + sensorEvent.values[0]);
+//            tv_stepdetector.setText(String.valueOf(stepDetect));
+//        }
+
+
+
 
 
     }

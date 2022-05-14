@@ -71,10 +71,8 @@ public class DBHelper extends SQLiteOpenHelper {
 
         // Khai bao bang chitietthongke
         String sql3 = "CREATE TABLE chitietthongke (" +
-                "TenDangNhap nvarchar," +
-                "IDThongKe INTEGER," +
-                "SoNgay INTEGER," +
-                "PRIMARY KEY(TenDangNhap, IDThongKe))";
+                "TenDangNhap nvarchar NOT NULL," +
+                "IDThongKe INTEGER PRIMARY KEY)";
         db.execSQL(sql3);
     }
 
@@ -312,4 +310,95 @@ public class DBHelper extends SQLiteOpenHelper {
         res.close();
         return ten;
     }
+
+    //..........DEMBUOC..........
+//    public NguoiDung getChiSo(String tenDangNhap) {
+//        SQLiteDatabase db = this.getWritableDatabase();
+//        NguoiDung n = new NguoiDung();
+//        String sql = "select ChieuCao, CanNang from nguoidung where TenDangNhap = ?";
+//        Cursor cursor = db.rawQuery(sql, new String[]{tenDangNhap});
+//
+//        if (cursor != null && cursor.moveToFirst()) {
+//            if (cursor.getString(cursor.getColumnIndex("ChieuCao")) != null && cursor.getString(cursor.getColumnIndex("CanNang")) != null) {
+//                n.setChieuCao(Double.parseDouble(cursor.getString(cursor.getColumnIndex("ChieuCao"))));
+//                n.setCanNang(Double.parseDouble(cursor.getString(cursor.getColumnIndex("CanNang"))));
+//            }
+//        }
+//        cursor.close();
+//        return n;
+//    }
+    public Boolean themThongKe(double soBuoc, double quangduong, Date ngay) {
+        SQLiteDatabase DB = this.getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+
+        contentValues.put("SoBuoc", soBuoc);
+        contentValues.put("QuangDuong", quangduong);
+        contentValues.put("Ngay", String.valueOf(ngay));
+        long result = DB.insert("thongke", null, contentValues);
+
+        return result != -1;
+    }
+
+    public Boolean themSoBuoc(int idThongKe, double soBuoc) {
+        SQLiteDatabase DB = this.getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+
+        contentValues.put("IDThongKe", idThongKe);
+        contentValues.put("SoBuoc", soBuoc);
+
+        long result = DB.insert("thongke", null, contentValues);
+
+        return result != -1;
+    }
+
+    public Boolean themChiTietThongKe(int idThongKe, String tenDangNhap) {
+        SQLiteDatabase DB = this.getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+
+        contentValues.put("IDThongKe", idThongKe);
+        contentValues.put("TenDangNhap", tenDangNhap);
+
+        long result = DB.insert("chitietthongke", null, contentValues);
+
+        return result != -1;
+    }
+
+    @SuppressLint("Range")
+    public int getIDThongKe() {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ChiTietThongKe c = new ChiTietThongKe();
+        String sql = "select IDThongKe from thongke order by IDThongKe desc limit 1";
+        int idThongKe = 0;
+        Cursor cursor = db.rawQuery(sql, null);
+
+        if (cursor != null && cursor.moveToFirst()) {
+            if (cursor.getString(cursor.getColumnIndex("IDThongKe")) != null)
+            {
+                idThongKe = Integer.parseInt(cursor.getString(cursor.getColumnIndex("IDThongKe")));
+            }
+        }
+        cursor.close();
+        return idThongKe;
+    }
+
+    @SuppressLint("Range")
+    public Date getNgay() {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ThongKe tk = new ThongKe();
+        Date ngay = null;
+        String sql = "select Ngay from thongke group by Ngay order by Ngay desc limit 1";
+        Cursor cursor = db.rawQuery(sql, null);
+
+        if (cursor != null && cursor.moveToFirst()) {
+            if (cursor.getString(cursor.getColumnIndex("Ngay")) != null)
+            {
+                ngay = java.sql.Date.valueOf(cursor.getString(cursor.getColumnIndex("Ngay")));
+            }
+        }
+        cursor.close();
+        return ngay;
+    }
+
+
+
 }

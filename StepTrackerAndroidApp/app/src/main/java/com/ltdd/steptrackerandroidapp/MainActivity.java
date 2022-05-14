@@ -70,7 +70,7 @@ public class MainActivity extends AppCompatActivity {
                     if (kiemTraTenDangNhap_MatKhau == true) {
                         TENDANGNHAP = tenDangNhap;
                         Toast.makeText(MainActivity.this, "Đăng nhập thành công!", Toast.LENGTH_SHORT).show();
-                        DB.sampleData();
+//                        DB.sampleData();
                         Intent intent = new Intent(MainActivity.this, Main_MenuBottom_Fragment.class);
                         intent.putExtra("keyName", DB.getTen(tenDangNhap));
                         startActivity(intent);
